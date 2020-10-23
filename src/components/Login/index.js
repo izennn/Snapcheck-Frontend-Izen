@@ -1,0 +1,101 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+// constants
+import { backendBaseUrl } from '../../shared/hostnames';
+// styling
+import { Container, Segment, Form, Button, Message, Dimmer, Loader } from 'semantic-ui-react';
+
+const Login = (props) => {
+	const firstName = useFormInput('');
+	const lastName = useFormInput('');
+	const [hasError, setHasError] = useState(false);
+	const [isAuthenticating, setIsAuthenticating] = useState(false)
+	const { setIsLoggedIn } = props;
+	useEffect(() => {
+		console.log("hasError changed!");
+		console.log(hasError)
+	}, [hasError]);
+
+	return (
+		<Container 
+			style={{
+				width: '100%',
+				height: '100%',
+				textAlign: 'center',
+				border: '1px solid blue', 
+			}}
+		>
+			<Segment style={{width: '20%', margin: 'auto'}}>
+				<Dimmer active={isAuthenticating} inverted>
+					<Loader inverted>Authenticating</Loader>
+				</Dimmer>
+				<Form>
+					<Form.Field>
+						<label>First Name</label>
+						<input placeholder="E.g. Jennifer" {...firstName} />
+					</Form.Field>
+					<Form.Field>
+						<label>Last Name</label>
+						<input placeholder="E.g. Gardner" {...lastName} />
+					</Form.Field>
+					<Message
+						hidden={!hasError}
+						visible={hasError}
+						compact
+						error
+						content="User could not be verified"
+					>
+					</Message>
+					<Form.Field>
+						<Button
+							type='submit'
+							basic
+							color='blue'
+							disabled={!firstName.value || !lastName.value}
+							onClick={() => {
+								setIsAuthenticating(true);
+								validateUser(firstName.value, lastName.value);
+							}}
+						>
+							Log In
+						</Button>
+					</Form.Field>
+				</Form>
+			</Segment>
+		</Container>
+	)
+
+	function useFormInput(initialValue) {
+		const [value, setValue] = useState(initialValue);
+		function handleChange(e) {
+			setValue(e.target.value);
+		}
+
+		return {
+			value, 
+			onChange: handleChange
+		};
+	}	
+
+	// given first & last name, setIsLoggedIn to whether a corresponding user exists
+	function validateUser(firstName, lastName) {
+		axios.get(`${backendBaseUrl}/orders?first_name=${firstName}&last_name=${lastName}`)
+			.then((res) => {
+				const foundOrders = res.data;
+				if (foundOrders && foundOrders.length > 0) {
+					setIsLoggedIn(true);
+				} else {
+					setHasError(true);
+				}
+			})
+			.catch((err) => {
+				console.log(err)
+			})
+			.finally(
+				setIsAuthenticating(false)
+			)
+	}
+}
+
+export default Login
