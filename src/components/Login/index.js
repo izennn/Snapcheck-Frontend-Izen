@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 
+// context
+import { UserContext } from '../../contexts/UserContext';
 // constants
 import { backendBaseUrl } from '../../shared/hostnames';
 // styling
@@ -11,6 +13,8 @@ const Login = (props) => {
 	const lastName = useFormInput('');
 	const [hasError, setHasError] = useState(false);
 	const [isAuthenticating, setIsAuthenticating] = useState(false)
+	const user = useContext(UserContext);
+
 	const { setIsLoggedIn } = props;
 
 	return (
@@ -18,8 +22,8 @@ const Login = (props) => {
 			style={{
 				width: '100%',
 				height: '100%',
+				padding: '5em',
 				textAlign: 'center',
-				border: '1px solid blue', 
 			}}
 		>
 			<Segment style={{width: '20%', margin: 'auto'}}>
@@ -75,12 +79,18 @@ const Login = (props) => {
 	}	
 
 	// given first & last name, setIsLoggedIn to whether a corresponding user exists
+	// if exists, set isLoggedIn to true and set user context values
+	// else, setHasError and show a message 
 	function validateUser(firstName, lastName) {
+		firstName = firstName.trimEnd();
+		lastName = lastName.trimEnd();
 		axios.get(`${backendBaseUrl}/orders?first_name=${firstName}&last_name=${lastName}`)
 			.then((res) => {
 				const foundOrders = res.data;
 				if (foundOrders && foundOrders.length > 0) {
 					setIsLoggedIn(true);
+					user.setFirstName(firstName);
+					user.setLastName(lastName);
 				} else {
 					setHasError(true);
 				}
@@ -94,4 +104,4 @@ const Login = (props) => {
 	}
 }
 
-export default Login
+export default Login;
