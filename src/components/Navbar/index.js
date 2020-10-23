@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 // import context
 import { UserContext } from '../../contexts/UserContext';
@@ -14,9 +15,11 @@ const Navbar = (props) => {
 	return (
 		<Menu secondary>
 			<Menu.Item
-				name='home'
-				active={activeItem === 'home'}
-				onClick={() => setActiveItem('home')}
+				name='users'
+				active={activeItem === 'users'}
+				onClick={() => setActiveItem('users')}
+				as={Link}
+				to='/users'
 			/>
 			<Menu.Menu position='right'>
 				<Menu.Item

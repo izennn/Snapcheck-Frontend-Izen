@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 // context
@@ -14,6 +15,7 @@ const Login = (props) => {
 	const [hasError, setHasError] = useState(false);
 	const [isAuthenticating, setIsAuthenticating] = useState(false)
 	const user = useContext(UserContext);
+	const history = useHistory();
 
 	const { setIsLoggedIn } = props;
 
@@ -91,6 +93,7 @@ const Login = (props) => {
 					setIsLoggedIn(true);
 					user.setFirstName(firstName);
 					user.setLastName(lastName);
+					history.push('/users');
 				} else {
 					setHasError(true);
 				}
