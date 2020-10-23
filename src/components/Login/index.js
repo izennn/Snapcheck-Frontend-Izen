@@ -12,10 +12,6 @@ const Login = (props) => {
 	const [hasError, setHasError] = useState(false);
 	const [isAuthenticating, setIsAuthenticating] = useState(false)
 	const { setIsLoggedIn } = props;
-	useEffect(() => {
-		console.log("hasError changed!");
-		console.log(hasError)
-	}, [hasError]);
 
 	return (
 		<Container 
