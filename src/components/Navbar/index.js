@@ -36,6 +36,8 @@ const Navbar = (props) => {
 
 	function handleLogout() {
 		setIsLoggedIn(false);
+		user.setFirstName('');
+		user.setLastName('');
 	}
 }
 
