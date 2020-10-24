@@ -29,7 +29,9 @@ function App() {
     >
 				<UserContextProvider>
 					<div>
-						<Navbar />
+						<Navbar 
+							setIsLoggedIn={setIsLoggedIn}
+						/>
 						<Switch>
 							<PrivateRoute 
 								exact 
