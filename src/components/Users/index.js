@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 // hostnames
@@ -14,27 +16,31 @@ const Users = () => {
 	const [users, setUsers] = useState([]);
 	const [displayOrders, setDisplayOrders] = useState([]);
 	const searchPhrase = useFormInput('');
+	const history = useHistory();
 
+	// on mount, fetch users and store into const users
 	useEffect(() => {
 		// fetch all users
 		axios.get(`${backendBaseUrl}/orders`)
 			.then((res) => {
 				if (res.data) {
-					setUsers(res.data)
+					setUsers(res.data);
+					setDisplayOrders(res.data);
 				} else {
-					console.log("Error in backend/orders response")
+					console.log("Error in backend/orders response");
 				}
 			})
 			.catch((err) => console.log(err))
 	}, [])
 
+	// on search phrase change, load temp search results to displayOrders
 	useEffect(() => {
-		setDisplayOrders(users);
-	}, [users])
-
-	useEffect(() => {
-		// do something to displayOrders when search phrase is changing
-	}, [searchPhrase])
+		if (searchPhrase === '') {
+			setDisplayOrders(users);
+		} else {
+			// set display orders as orders that have 1. first name 2. last name, or 3. amount matching
+		}
+	}, [searchPhrase, users])
 
 	return (
 		<Container style={{overflowY: 'auto'}}>
@@ -61,11 +67,11 @@ const Users = () => {
 				</Table.Header>
 				<Table.Body>
 				{
-					displayOrders.length > 0 ? displayOrders.map((user, userId) => {
+					displayOrders.length > 0 ? displayOrders.map((user) => {
 						return (
 							<Table.Row 
-								key={userId}
-								onClick={() => console.log(userId)}
+								key={user.id}
+								onClick={() => changeToEditUser(user.id)}
 							>
 								<Table.Cell collapsing>{user.first_name}&nbsp;{user.last_name}</Table.Cell>
 								<Table.Cell>{addressPipe(user.address)}</Table.Cell>
@@ -80,6 +86,12 @@ const Users = () => {
 			</Table>	
 		</Container>
 	)
+
+	// on table row click, change to EditUser component with specified id
+	// do so by changing the path 
+	function changeToEditUser(id) {
+		history.push(`/users/${id}/`);
+	}
 
 	function useFormInput(initialValue) {
 		const [value, setValue] = useState(initialValue);
@@ -125,4 +137,4 @@ const Users = () => {
 	}
 };
 
-export default Users;
+export default withRouter(Users);
