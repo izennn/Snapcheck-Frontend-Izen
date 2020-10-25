@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 // import context
 import { UserContext } from '../../contexts/UserContext';
@@ -10,10 +10,12 @@ const Navbar = (props) => {
 	const [activeItem, setActiveItem] = useState('');
 	const user = useContext(UserContext);
 	const { setIsLoggedIn } = props;
+	const history = useHistory();
 	// locks up context to first time it finds a provider 
 
 	return (
 		<Menu secondary>
+			<Menu.Item header content="Izen's User Databse" />
 			<Menu.Item
 				name='users'
 				active={activeItem === 'users'}
@@ -38,6 +40,7 @@ const Navbar = (props) => {
 		setIsLoggedIn(false);
 		user.setFirstName('');
 		user.setLastName('');
+		history.push('/login')
 	}
 }
 
