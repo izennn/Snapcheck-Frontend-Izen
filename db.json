@@ -11,7 +11,7 @@
 				"state": "CA",
 				"zip": "94035"
 			},
-			"gender": "MALE",
+			"gender": "Male",
 			"age": 28,
 			"order_total": {
 				"amount": 99,
@@ -29,7 +29,7 @@
 				"state": "NY",
 				"zip": "10001"
 			},
-			"gender": "FEMALE",
+			"gender": "Female",
 			"age": 32,
 			"order_total": {
 				"amount": 510028,
@@ -47,7 +47,7 @@
 				"state": "CA",
 				"zip": "94567"
 			},
-			"gender": "MALE",
+			"gender": "Male",
 			"age": 23,
 			"order_total": {
 				"amount": 10900,
@@ -65,7 +65,7 @@
 				"state": "TX",
 				"zip": "75001"
 			},
-			"gender": "MALE",
+			"gender": "Male",
 			"age": 37,
 			"order_total": {
 				"amount": 66099,
@@ -83,7 +83,7 @@
 				"state": "NJ",
 				"zip": "07054"
 			},
-			"gender": "MALE",
+			"gender": "Male",
 			"age": 19,
 			"order_total": {
 				"amount": 599,
@@ -101,7 +101,7 @@
 				"state": "FL",
 				"zip": "32004"
 			},
-			"gender": "MALE",
+			"gender": "Male",
 			"age": 44,
 			"order_total": {
 				"amount": 77999,
@@ -110,8 +110,8 @@
 		},
 		{
 			"id": "5f93cc766788954155109052",
-			"first_name": "Olivia",
-			"last_name": "Bostrom",
+			"first_name": "Spaghetti",
+			"last_name": "Tortellini",
 			"address": {
 				"address1": "8046 East Oakwood Rd.",
 				"address2": "#9",
@@ -119,7 +119,7 @@
 				"state": "MA",
 				"zip": "01201"
 			},
-			"gender": "FEMALE",
+			"gender": "Female",
 			"age": 26,
 			"order_total": {
 				"amount": 12679,
@@ -137,7 +137,7 @@
 					"state": "GA",
 					"zip": "30294"
 			},
-			"gender": "FEMALE",
+			"gender": "Female",
 			"age": 24,
 			"order_total": {
 					"amount": 58000,
@@ -155,7 +155,7 @@
 					"state": "OK",
 					"zip": "73108"
 			},
-			"gender": "FEMALE",
+			"gender": "Female",
 			"age": 22,
 			"order_total": {
 					"amount": 499,
@@ -173,7 +173,7 @@
 					"state": "CA",
 					"zip": "94539"
 			},
-			"gender": "FEMALE",
+			"gender": "FEMale",
 			"age": 25,
 			"order_total": {
 					"amount": 2347,
