@@ -8,23 +8,19 @@ import { BACKEND_BASE_URL } from '../../shared/hostnames';
 // styling
 import { Container, Input, Table } from 'semantic-ui-react';
 
-// TODO
-// 4. Search bar: could search by firstname, lastname, or amount
-
 const Users = () => {
-	const [users, setUsers] = useState([]);
-	const [displayOrders, setDisplayOrders] = useState([]);
-	const searchPhrase = useFormInput('');
+	const [allUsers, setAllUsers] = useState([]);
+	const [searchResults, setSearchResults] = useState([]);
+	const searchPhraseObject = useFormInput('');
 	const history = useHistory();
 
 	// on mount, fetch users and store into const users
 	useEffect(() => {
-		// fetch all users
 		axios.get(`${BACKEND_BASE_URL}/users`)
 			.then((res) => {
 				if (res.data) {
-					setUsers(res.data);
-					setDisplayOrders(res.data);
+					setAllUsers(res.data);
+					setSearchResults(res.data);
 				} else {
 					console.log("Error in backend/users response");
 				}
@@ -34,19 +30,27 @@ const Users = () => {
 
 	// on search phrase change, load temp search results to displayOrders
 	useEffect(() => {
-		if (searchPhrase === '') {
-			setDisplayOrders(users);
-		} else {
-			// set display orders as orders that have 1. first name 2. last name, or 3. amount matching
+		let searchPhrase = searchPhraseObject.value;
+		function filterUsersByPhrase(user) {
+			let amountString = amountPipe(user.order_total.amount)
+			return (
+				user.first_name.toLowerCase().includes(searchPhrase.toLowerCase()) ||
+				user.last_name.toLowerCase().includes(searchPhrase.toLowerCase()) ||
+				amountString.includes(searchPhrase)	
+			)
 		}
-	}, [searchPhrase, users])
+
+		let results = allUsers.filter(filterUsersByPhrase);
+		setSearchResults(results);
+	}, [searchPhraseObject.value, allUsers])
 
 	return (
 		<Container style={{overflowY: 'auto', paddingTop: '2em'}}>
 			<Input 
 				focus 
 				placeholder="Search name, address ..." 
-				{...searchPhrase}
+				default=''
+				{...searchPhraseObject}
 			/>
 			<Table celled>
 				<Table.Header>
@@ -66,7 +70,7 @@ const Users = () => {
 				</Table.Header>
 				<Table.Body>
 				{
-					displayOrders.length > 0 ? displayOrders.map((user) => {
+					searchResults.length > 0 ? searchResults.map((user) => {
 						let amountAndCurrency = `${amountPipe(user.order_total.amount)} ${user.order_total.currency}`;
 						return (
 							<Table.Row 
