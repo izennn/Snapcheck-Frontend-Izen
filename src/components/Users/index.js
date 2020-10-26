@@ -43,7 +43,7 @@ const Users = () => {
 	}, [searchPhrase, users])
 
 	return (
-		<Container style={{overflowY: 'auto'}}>
+		<Container style={{overflowY: 'auto', paddingTop: '2em'}}>
 			<Input 
 				focus 
 				placeholder="Search name, address ..." 
@@ -68,6 +68,7 @@ const Users = () => {
 				<Table.Body>
 				{
 					displayOrders.length > 0 ? displayOrders.map((user) => {
+						let amountAndCurrency = `${amountPipe(user.order_total.amount)} ${user.order_total.currency}`;
 						return (
 							<Table.Row 
 								key={user.id}
@@ -77,7 +78,7 @@ const Users = () => {
 								<Table.Cell>{addressPipe(user.address)}</Table.Cell>
 								<Table.Cell collapsing>{user.gender}</Table.Cell>
 								<Table.Cell collapsing>{user.age}</Table.Cell>
-								<Table.Cell textAlign='right' collapsing>{amountPipe(user.order_total)}</Table.Cell>
+								<Table.Cell textAlign='right' collapsing>{amountAndCurrency}</Table.Cell>
 							</Table.Row>
 						)
 					}) : null
@@ -90,7 +91,7 @@ const Users = () => {
 	// on table row click, change to EditUser component with specified id
 	// do so by changing the path 
 	function changeToEditUser(id) {
-		history.push(`/users/${id}/`);
+		history.push(`/users/${id}`);
 	}
 
 	function useFormInput(initialValue) {
@@ -112,29 +113,28 @@ const Users = () => {
 		let returnString = `${address1} ${address2} ${city}, ${state} ${zip}`;
 		return returnString;
 	}
-
-	// given order_total object, return formatted amount i.e. currency symbol and dec
-	function amountPipe(order_total) {
-		if (order_total === null || order_total.amount === undefined) {
-			return "Null";
-		}
-
-		let amountString = order_total.amount.toString();
-		let amountStringLen = amountString.length;
-		let currency = order_total.currency;
-
-		if (amountStringLen === 1) {
-			amountString = `0.0${amountString}`;
-		} else if (amountStringLen === 2) {
-			amountString = `0.${amountString}`;
-		} else {
-			let dotIndex = amountStringLen - 2;
-			let temp = amountString.slice(0, dotIndex) + '.' + amountString.slice(dotIndex);
-			amountString = temp;
-		}
-
-		return `${amountString} ${currency}`;
-	}
 };
 
+// given order_total object, return formatted amount i.e. currency symbol and dec
+export function amountPipe(amount) {
+	if (amount === null || amount === undefined) {
+		return "Null";
+	}
+
+	let amountString = amount.toString();
+	let amountStringLen = amountString.length;
+
+	if (amountStringLen === 1) {
+		amountString = `0.0${amountString}`;
+	} else if (amountStringLen === 2) {
+		amountString = `0.${amountString}`;
+	} else {
+		let dotIndex = amountStringLen - 2;
+		let temp = amountString.slice(0, dotIndex) + '.' + amountString.slice(dotIndex);
+		amountString = temp;
+	}
+
+	return amountString
+}
+	
 export default withRouter(Users);
