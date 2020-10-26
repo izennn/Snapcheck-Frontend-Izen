@@ -48,9 +48,12 @@ const Users = () => {
 		<Container style={{overflowY: 'auto', paddingTop: '2em'}}>
 			<Input 
 				focus 
-				placeholder="Search name, address ..." 
+				placeholder="Search first name, last name, amount" 
 				default=''
 				{...searchPhraseObject}
+				style={{
+					width: '30%'
+				}}
 			/>
 			<Table celled>
 				<Table.Header>
