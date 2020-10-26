@@ -1,68 +1,36 @@
+# Izen's Snapcheck Frontend Submission
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+----
 
-In the project directory, you can run:
+## Motvation
 
-### `yarn start`
+This is my submission for Snapcheck's 2020 internship application. In this project, I developed the frontend side for an application that pulls, udpates, or deletes users from an user database, complete with user authentication.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+As of now, this app is not running on a live site, but to run it, you can follow the steps below:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#### Starting the Backend
 
-### `yarn test`
+Open a terminal and type in the following code: `json-server --watch db.json`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Starting the Frontend
 
-### `yarn build`
+In another terminal, run this code: `npm start`. This will allow the application to be ran on [localhost:3000](http://localhost:3000)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+----
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+For this project, I've installed numerous 3rd party node packages. Here are some of the major dependencies: 
 
-### `yarn eject`
+1. React Hook Forms 
+2. Yup
+3. Semantic UI React
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+[react-hook-forms](https://react-hook-form.com/) and [yup](https://www.npmjs.com/package/yup) were used for form editing, validating, and submission. [semantic-ui-react](https://react.semantic-ui.com/) was used for styling.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+----
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Closing Notes
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Thank you for the assignment, and you can find the most recent version of my resume [here](https://izen-resume.s3-us-west-1.amazonaws.com/IzenHuangResume.pdf). Thank you for the consideration.
