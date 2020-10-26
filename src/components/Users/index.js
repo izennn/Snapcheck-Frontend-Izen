@@ -17,7 +17,6 @@ const Users = () => {
 
 	// on mount, fetch users and store into const users
 	useEffect(() => {
-		console.log("Fetching all users")
 		setSearchResults(true);
 		axios.get(`${BACKEND_BASE_URL}/users`)
 			.then((res) => {
