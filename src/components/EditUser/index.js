@@ -13,18 +13,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 // style
 import { Header, Form, Button, Dimmer, Loader, Message } from 'semantic-ui-react';
 
-import { backendBaseUrl } from '../../shared/hostnames';
+import { BACKEND_BASE_URL } from '../../shared/hostnames';
 import { amountPipe } from '../Users';
 
-/*
-	TODO: you will find specified user-to-edit's user ID in the params
-	5. 3 buttons: delete, cancel, save
-		- delete: pops up a model asking for "yes-delete" or "cancel"
-		- cancel: brings user back to "users" DB table
-		- save: saves data in JSON mock server file
-			- before submitting remember to change decimal number in amount to cents
- */
- 
 const genderOptions = [
 	{ key: 'm', text: 'Male', value: 'Male'},
 	{ key: 'f', text: 'Female', value: 'Female'},
@@ -63,12 +54,13 @@ const EditUser = () => {
 	useEffect(() => {
 		// async server request and fill up form
 		setIsFetchingUser(true);
-		axios.get(`${backendBaseUrl}/users/${userId}`)
+		axios.get(`${BACKEND_BASE_URL}/users/${userId}`)
 			.then((res) => {
 				if (res.data) {
 					let user = res.data;
 					let address = user.address;
 					reset({
+						id: user.id,
 						firstName: user.first_name,
 						lastName: user.last_name,
 						gender: user.gender,
@@ -96,7 +88,7 @@ const EditUser = () => {
 	const onSubmit = async data => {
 		const uploadData = transformUploadData(data);
 
-		const res = await axios.put(`${backendBaseUrl}/users/${userId}`, uploadData);
+		const res = await axios.put(`${BACKEND_BASE_URL}/users/${userId}`, uploadData);
 		if (res.status === 200) {
 			history.push('/users');
 		} else {
@@ -243,6 +235,7 @@ const EditUser = () => {
 
 	function transformUploadData(data) {
 		const uploadData = {
+			id: data.id,
 			first_name: data.firstName,
 			last_name: data.lastName,
 			address: {
@@ -264,7 +257,7 @@ const EditUser = () => {
 	}
 
 	function handleCancel() {
-		history.push(`${backendBaseUrl}/users`);
+		history.push(`${BACKEND_BASE_URL}/users`);
 	}
 
 	function handleDelete() {
