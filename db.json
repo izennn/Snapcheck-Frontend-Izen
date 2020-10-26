@@ -1,25 +1,24 @@
 {
   "users": [
     {
-      "id": "5f965078e54707596cfb8eaf",
       "first_name": "Jack",
       "last_name": "Smith",
       "address": {
-          "address1": "123 Main St.",
-          "address2": "#1",
-          "city": "San Francisco",
-          "state": "CA",
-          "zip": "94035"
+        "address1": "123 Main St.",
+        "address2": "#1",
+        "city": "San Francisco",
+        "state": "CA",
+        "zip": 94035
       },
       "gender": "Male",
       "age": 28,
       "order_total": {
-          "amount": 10028,
-          "currency": "USD"
-      }
+        "amount": "10028",
+        "currency": "USD"
+      },
+      "id": "5f965078e54707596cfb8eaf"
     },
     {
-      "id": "5f93cc0efc969ffffbfb7c65",
       "first_name": "Jane",
       "last_name": "Smith",
       "address": {
@@ -27,14 +26,15 @@
         "address2": "#8",
         "city": "New York",
         "state": "NY",
-        "zip": "10001"
+        "zip": 10001
       },
       "gender": "Female",
       "age": 32,
       "order_total": {
-        "amount": 510028,
+        "amount": "5999",
         "currency": "GBP"
-      }
+      },
+      "id": "5f93cc0efc969ffffbfb7c65"
     },
     {
       "id": "5f93cc21effdbddcd885dd37",
@@ -110,7 +110,7 @@
     },
     {
       "first_name": "Kaitlin",
-      "last_name": "Channn",
+      "last_name": "Chan",
       "address": {
         "address1": "28 Willow Ave.",
         "address2": "#6",
