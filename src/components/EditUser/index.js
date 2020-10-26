@@ -85,15 +85,18 @@ const EditUser = () => {
 
 	// handle submission button
 	// first, transform data
-	const onSubmit = async data => {
+	const onSubmit = data => {
 		const uploadData = transformUploadData(data);
 
-		const res = await axios.put(`${BACKEND_BASE_URL}/users/${userId}`, uploadData);
-		if (res.status === 200) {
-			history.push('/users');
-		} else {
-			setSubmitError(true);
-		}
+		axios.put(`${BACKEND_BASE_URL}/users/${userId}`, uploadData)
+			.then((res) => {
+				if (res.status === 200) {
+					history.push('/users');
+				} else {
+					setSubmitError(true);
+				}
+			})
+			.catch((err) => console.log(err))
 	}
 
 	return (
@@ -257,7 +260,7 @@ const EditUser = () => {
 	}
 
 	function handleCancel() {
-		history.push(`${BACKEND_BASE_URL}/users`);
+		history.push(`/users`);
 	}
 
 	function handleDelete() {
