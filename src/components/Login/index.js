@@ -86,7 +86,7 @@ const Login = (props) => {
 	function validateUser(firstName, lastName) {
 		firstName = firstName.trimEnd();
 		lastName = lastName.trimEnd();
-		axios.get(`${backendBaseUrl}/orders?first_name=${firstName}&last_name=${lastName}`)
+		axios.get(`${backendBaseUrl}/users?first_name=${firstName}&last_name=${lastName}`)
 			.then((res) => {
 				const foundOrders = res.data;
 				if (foundOrders && foundOrders.length > 0) {

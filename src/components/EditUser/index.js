@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
+// components
+import DeleteUserModal from '../DeleteUserModal';
+
 // form & validation
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -60,7 +63,7 @@ const EditUser = () => {
 	useEffect(() => {
 		// async server request and fill up form
 		setIsFetchingUser(true);
-		axios.get(`${backendBaseUrl}/orders/${userId}`)
+		axios.get(`${backendBaseUrl}/users/${userId}`)
 			.then((res) => {
 				if (res.data) {
 					let user = res.data;
@@ -93,10 +96,9 @@ const EditUser = () => {
 	const onSubmit = async data => {
 		const uploadData = transformUploadData(data);
 
-		const res = await axios.put(`${backendBaseUrl}/orders/${userId}`, uploadData);
+		const res = await axios.put(`${backendBaseUrl}/users/${userId}`, uploadData);
 		if (res.status === 200) {
-			history.push('/orders');
-			console.log(res.data);
+			history.push('/users');
 		} else {
 			setSubmitError(true);
 		}
@@ -107,6 +109,12 @@ const EditUser = () => {
 			<Dimmer active={isFetchingUser} inverted>
 				<Loader inverted>Fetching user data ...</Loader>
 			</Dimmer>
+
+			<DeleteUserModal
+				setOpen={setDeleteModalOpen}
+				open={deleteModalOpen}
+				userId={userId}
+			/>
 
 			<Header as='h3' style={{marginLeft: 'auto', marginRight: 'auto'}}>Edit User</Header>
 			<br />
@@ -256,11 +264,10 @@ const EditUser = () => {
 	}
 
 	function handleCancel() {
-		history.push(`${backendBaseUrl}/orders`);
+		history.push(`${backendBaseUrl}/users`);
 	}
 
 	function handleDelete() {
-		console.log("Handling detele")
 		setDeleteModalOpen(true);
 	}
 }

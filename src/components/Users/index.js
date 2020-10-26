@@ -21,13 +21,14 @@ const Users = () => {
 	// on mount, fetch users and store into const users
 	useEffect(() => {
 		// fetch all users
-		axios.get(`${backendBaseUrl}/orders`)
+		console.log("Fetching all users for users table")
+		axios.get(`${backendBaseUrl}/users`)
 			.then((res) => {
 				if (res.data) {
 					setUsers(res.data);
 					setDisplayOrders(res.data);
 				} else {
-					console.log("Error in backend/orders response");
+					console.log("Error in backend/users response");
 				}
 			})
 			.catch((err) => console.log(err))
