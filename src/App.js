@@ -22,9 +22,9 @@ function App() {
 		<div 
 			className="App" 
 			style={{ 
-			width: '100vw', 
-			height: '100vh', 
-			padding: '0em 10em 0 10em',
+				width: '100vw', 
+				height: '100vh', 
+				padding: '0em 10em 0 10em',
 			}}
 		>
 			<UserContextProvider>
