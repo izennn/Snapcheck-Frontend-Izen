@@ -6,16 +6,19 @@ import axios from 'axios';
 // hostnames
 import { BACKEND_BASE_URL } from '../../shared/hostnames';
 // styling
-import { Container, Input, Table } from 'semantic-ui-react';
+import { Container, Input, Table, Dimmer, Loader } from 'semantic-ui-react';
 
 const Users = () => {
 	const [allUsers, setAllUsers] = useState([]);
 	const [searchResults, setSearchResults] = useState([]);
+	const [ isFetchingUsers, setIsFetchingUsers ] = useState(false);
 	const searchPhraseObject = useFormInput('');
 	const history = useHistory();
 
 	// on mount, fetch users and store into const users
 	useEffect(() => {
+		console.log("Fetching all users")
+		setSearchResults(true);
 		axios.get(`${BACKEND_BASE_URL}/users`)
 			.then((res) => {
 				if (res.data) {
@@ -26,6 +29,7 @@ const Users = () => {
 				}
 			})
 			.catch((err) => console.log(err))
+			.finally(setIsFetchingUsers(false))
 	}, [])
 
 	// on search phrase change, load temp search results to displayOrders
@@ -46,6 +50,9 @@ const Users = () => {
 
 	return (
 		<Container style={{overflowY: 'auto', paddingTop: '2em'}}>
+			<Dimmer active={isFetchingUsers} inverted>
+				<Loader inverted>Fetching users ...</Loader>
+			</Dimmer>
 			<Input 
 				focus 
 				placeholder="Search first name, last name, amount" 
