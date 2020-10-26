@@ -5,7 +5,7 @@ import axios from 'axios';
 // context
 import { UserContext } from '../../contexts/UserContext';
 // constants
-import { backendBaseUrl } from '../../shared/hostnames';
+import { BACKEND_BASE_URL } from '../../shared/hostnames';
 // styling
 import { Container, Segment, Form, Button, Message, Dimmer, Loader } from 'semantic-ui-react';
 
@@ -86,7 +86,7 @@ const Login = (props) => {
 	function validateUser(firstName, lastName) {
 		firstName = firstName.trimEnd();
 		lastName = lastName.trimEnd();
-		axios.get(`${backendBaseUrl}/users?first_name=${firstName}&last_name=${lastName}`)
+		axios.get(`${BACKEND_BASE_URL}/users?first_name=${firstName}&last_name=${lastName}`)
 			.then((res) => {
 				const foundOrders = res.data;
 				if (foundOrders && foundOrders.length > 0) {

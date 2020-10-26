@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { Modal, Button } from 'semantic-ui-react';
 
 // constant
-import { backendBaseUrl } from '../../shared/hostnames';
+import { BACKEND_BASE_URL } from '../../shared/hostnames';
 
 const DeleteUserModal = ({setOpen, open, userId}) => {
 	const history = useHistory();
@@ -14,6 +14,7 @@ const DeleteUserModal = ({setOpen, open, userId}) => {
 			onClose={() => setOpen(false)}
 			onOpen={() => setOpen(true)}
 			open={open}
+			size='mini'
 		>
 			<Modal.Header>Delete User</Modal.Header>
 			<Modal.Content>
@@ -37,10 +38,9 @@ const DeleteUserModal = ({setOpen, open, userId}) => {
 	)
 
 	function deleteUser() {
-		axios.delete(`${backendBaseUrl}/users/${userId}`)
+		axios.delete(`${BACKEND_BASE_URL}/users/${userId}`)
 			.then((res) => {
 				if (res.status === 200) {
-					console.log("Delete success")
 					history.push('/users');
 				} else {
 					console.log("Error in deleting")

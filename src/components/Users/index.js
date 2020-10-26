@@ -4,12 +4,11 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 // hostnames
-import { backendBaseUrl } from '../../shared/hostnames';
+import { BACKEND_BASE_URL } from '../../shared/hostnames';
 // styling
 import { Container, Input, Table } from 'semantic-ui-react';
 
 // TODO
-// 1. add link for each table row to individual user
 // 4. Search bar: could search by firstname, lastname, or amount
 
 const Users = () => {
@@ -21,8 +20,7 @@ const Users = () => {
 	// on mount, fetch users and store into const users
 	useEffect(() => {
 		// fetch all users
-		console.log("Fetching all users for users table")
-		axios.get(`${backendBaseUrl}/users`)
+		axios.get(`${BACKEND_BASE_URL}/users`)
 			.then((res) => {
 				if (res.data) {
 					setUsers(res.data);
