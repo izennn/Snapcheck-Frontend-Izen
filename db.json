@@ -1,21 +1,21 @@
 {
-  "orders": [
+  "users": [
     {
-      "id": "5f93cbf178fbb418c9f82bc7",
+      "id": "5f965078e54707596cfb8eaf",
       "first_name": "Jack",
       "last_name": "Smith",
       "address": {
-        "address1": "123 Main St.",
-        "address2": "#1",
-        "city": "San Francisco",
-        "state": "CA",
-        "zip": "94035"
+          "address1": "123 Main St.",
+          "address2": "#1",
+          "city": "San Francisco",
+          "state": "CA",
+          "zip": "94035"
       },
       "gender": "Male",
       "age": 28,
       "order_total": {
-        "amount": 99,
-        "currency": "USD"
+          "amount": 10028,
+          "currency": "USD"
       }
     },
     {
@@ -110,7 +110,7 @@
     },
     {
       "first_name": "Kaitlin",
-      "last_name": "Chan",
+      "last_name": "Channn",
       "address": {
         "address1": "28 Willow Ave.",
         "address2": "#6",
