@@ -1,8 +1,6 @@
 # Izen's Snapcheck Frontend Submission
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-----
-
 ## Motvation
 
 This is my submission for Snapcheck's 2020 internship application. In this project, I developed the frontend side for an application that pulls, udpates, or deletes users from an user database, complete with user authentication.
@@ -15,14 +13,13 @@ Open a terminal and type in the following code: `json-server --watch db.json`
 
 #### Starting the Frontend
 
-In another terminal, run this code: `npm start`. This will allow the application to be ran on [localhost:3000](http://localhost:3000)
+In another terminal, naviate to /src directory, run this code: `npm start`. This will allow the application to be ran on [localhost:3000](http://localhost:3000)
 
 #### Demo Username & Password
 
-Username: Jennifer
-Password: Gardner
+Username: Any first name from db.json
 
-----
+Password: Any last name from db.json
 
 ## Dependencies
 
